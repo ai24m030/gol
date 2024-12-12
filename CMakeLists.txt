@@ -9,7 +9,7 @@ add_executable(gol main.cpp
         src/Board.h
         src/GameOfLife.cpp
         src/GameOfLife.h
-        src/TestBoards.h)
+)
 
 file(COPY ${CMAKE_SOURCE_DIR}/files/0_1000_500_300.gol DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY ${CMAKE_SOURCE_DIR}/files/0_1000_500_0.gol DESTINATION ${CMAKE_BINARY_DIR})
