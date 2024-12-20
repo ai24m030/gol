@@ -9,7 +9,7 @@
 
 class GameOfLife {
 public:
-    Board* simulate(Board* board, int generations);
+    Board* simulate_generations(Board* board, int generations);
 
 private:
     int countLiveNeighbors(Board* board, int row, int col) const;

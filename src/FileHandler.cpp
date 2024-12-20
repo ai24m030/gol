@@ -54,7 +54,6 @@ void FileHandler::saveBoard(const std::string &filename, Board* board) {
     if (!outfile.is_open()) {
         throw std::runtime_error("Failed to open file " + filename);
     }
-    std::cout << "writing output" << std::endl;
     outfile << board->cols << "," << board->rows << "\n";
     for (const auto& row : board->board) {
         for (bool cell : row) {
