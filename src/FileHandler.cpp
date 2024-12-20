@@ -15,6 +15,7 @@ Board* FileHandler::loadBoard(const std::string &filename) {
 
     std::ifstream infile(filename);
     if (!infile.is_open()) {
+        std::cerr << "File " << filename << " could not be opened." << std::endl;
         throw std::runtime_error("Failed to open file " + filename);
     }
 
