@@ -6,6 +6,7 @@
 
 #include "src/FileHandler.h"
 #include "src/GameOfLife.h"
+#include "src/Timing.h"
 
 
 void printUsage() {
@@ -13,6 +14,9 @@ void printUsage() {
 }
 
 int main(int argc, char* argv[]) {
+    Timing* timing = Timing::getInstance();
+    timing->startSetup();
+
     std::string loadFile, saveFile;
     int generations = 0;
     bool measure = false;
@@ -58,21 +62,27 @@ int main(int argc, char* argv[]) {
         GameOfLife gol = GameOfLife();
 
         std::cout << "Start simulation" << std::endl;
-        auto start = std::chrono::high_resolution_clock::now();
+
+        timing->stopSetup();
+        timing->startComputation();
+
         board = gol.simulate(board, generations);
-        auto end = std::chrono::high_resolution_clock::now();
+
+        timing->stopComputation();
+        timing->startFinalization();
         std::cout << "Finished simulation" << std::endl;
         FileHandler::saveBoard(saveFile, board);
 
         // Compare with other board
-        auto compareBoard = FileHandler::loadBoard("random10000_out.gol");
+        auto compareBoard = FileHandler::loadBoard("random1000_out.gol");
         bool isSame = board->compareBoard(compareBoard);
         if (!isSame) {
             std::cerr << "Board doesn't match" << std::endl;
         }
+        timing->stopFinalization();
+        std::string output = timing->getResults();
         if (measure) {
-            std::chrono::duration<double> elapsed = end - start;
-            std::cout << "Simulation time: " << elapsed.count() << " seconds\n";
+            std::cout << output << std::endl;
         }
     } catch (const std::exception& ex) {
         std::cerr << "Error: " << ex.what() << "\n";
