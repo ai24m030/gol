@@ -12,3 +12,6 @@ add_executable(gol main.cpp
         src/Timing.cpp
         src/Timing.h
 )
+
+find_package(OpenMP REQUIRED)
+target_link_libraries(gol PRIVATE OpenMP::OpenMP_CXX)
