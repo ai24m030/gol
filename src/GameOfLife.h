@@ -14,7 +14,6 @@ public:
 
 private:
     int countLiveNeighbors(Board* board, int row, int col) const;
-    int countLiveNeighborsOmp(Board* board, int row, int col) const;
 };
 
 

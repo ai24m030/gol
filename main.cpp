@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
                 mode = argv[++i];
                 if (mode == "omp") {
                     if (i + 2 < argc && std::string(argv[i + 1]) == "--threads") {
-                        i += 2; // Skip "--threads"
+                        i += 2;
                         try {
                             numThreads = std::stoi(argv[i]);
                             omp_set_num_threads(numThreads);
@@ -107,7 +107,9 @@ int main(int argc, char *argv[]) {
     timing->startComputation();
     if (mode == "seq") {
         board = gol.simulate_generations(board, generations);
-    } else {
+    }
+
+    if (mode == "omp") {
         board = gol.simulate_generations_omp(board, generations);
     }
 
