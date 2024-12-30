@@ -10,7 +10,7 @@
 
 
 void printUsage() {
-    std::cout << "Usage: gol --load <filename> --save <filename> --generations <n> [--measure]\n";
+    std::cout << "Usage: gol --mode [seq | omp -- thread <count>] --load <filename> --save <filename> --generations <n> [--measure]\n";
 }
 
 int main(int argc, char *argv[]) {

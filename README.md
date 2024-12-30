@@ -1,5 +1,4 @@
-﻿# Readme
-## How to run
+﻿# How to run
 - Use CmakeLists.txt to build.
 - main.cpp is entry point
 
@@ -13,8 +12,19 @@ cd .\Release\
 .\gol.exe
 ```
 
+## Usage
 ```
-gol --load <filename> --save <filename> --generations <n> [--measure]
+gol --mode [seq | omp -- thread <count>] --load <filename> --save <filename> --generations <n> [--measure]
+```
+
+## Example Seq
+```
+.\gol.exe --mode seq --load .\files\random1000_in.gol --save .\outfiles\mai24m030_1000_cpu_out.gol --generations 250 --measure
+```
+
+## Example OpenMP
+```
+.\gol.exe --mode omp --threads 8 --load .\files\random1000_in.gol --save .\outfiles\mai24m030_1000_openmp_out.gol --generations 250 --measure
 ```
 
 ## Output
@@ -23,7 +33,7 @@ gol --load <filename> --save <filename> --generations <n> [--measure]
 - without ```--measure``` no output
 
 
-## Time
+### Time examples Seq
 
 On my machine (Windows, Intel 13700K):
 
